@@ -1,0 +1,84 @@
+1.1
+a = input("word:")
+result = list(a.lower())
+print("result:", result)
+
+1.2
+
+data = [('p', 2), ('u', 1), ('l', 1), (' ', 1), ('f', 1), ('i', 2), ('c', 1), ('t', 1), ('o', 1), ('n', 1)]
+vowels = 'aeiou'
+vow, cons, symb = [], [], []
+
+for char, count in data:
+    if char in vowels:
+        vow.append((char, count))
+    elif char.isalpha():
+        cons.append((char, count))
+    else:
+        symb.append((char, count))
+
+print("vow =", vow)
+print("cons =", cons)
+print("symb =", symb)
+
+2.1
+
+student = {'name' : 'Adam', 'assignment' : [82, 56, 44, 30], 'lab' : [78.20, 77.20], 'test' : [78, 77]}
+print(student)
+
+
+2.2 
+s = {'name': 'Adam', 'assignment': [82, 56, 44, 30], 'lab': [78.20, 77.20], 'test': [78, 77]}
+print(s)
+
+total = len(s['assignment']) + len(s['lab']) + len(s['test'])
+summary = {s['name']: total}
+print(summary)
+
+
+2.3
+s1 = {'name': 'Adam', 'assignment': [82, 56, 44, 30], 'lab': [78.20, 77.20], 'test': [78, 77]}
+s2 = {'name': 'Kevin', 'assignment': [82, 30], 'test': [], 'lab': [78.2]}
+
+def final_grade(s):
+    total = len(s['assignment']) + len(s['lab']) + len(s['test'])
+    if total < 4:
+        s['final_grade'] = 0
+    else:
+        a_avg = sum(s['assignment']) / len(s['assignment']) if s['assignment'] else 0
+        l_avg = sum(s['lab']) / len(s['lab']) if s['lab'] else 0
+        t_avg = sum(s['test']) / len(s['test']) if s['test'] else 0
+        s['final_grade'] = 0.3 * a_avg + 0.5 * l_avg + 0.2 * t_avg
+    return s
+
+print(final_grade(s1))
+print(final_grade(s2))
+
+2.4
+s1 = {'name': 'Adam', 'assignment': [82, 56, 44, 30], 'lab': [78.20, 77.20], 'test': [78, 77]}
+s2 = {'name': 'Kevin', 'assignment': [82, 30], 'test': [], 'lab': [78.2]}
+
+def final_grade(s):
+    total = len(s['assignment']) + len(s['lab']) + len(s['test'])
+    if total < 4:
+        s['final_grade'] = 0
+    else:
+        a_avg = sum(s['assignment']) / len(s['assignment']) if s['assignment'] else 0
+        l_avg = sum(s['lab']) / len(s['lab']) if s['lab'] else 0
+        t_avg = sum(s['test']) / len(s['test']) if s['test'] else 0
+        s['final_grade'] = 0.3 * a_avg + 0.5 * l_avg + 0.2 * t_avg
+    return s
+
+print(final_grade(s1))
+print(final_grade(s2))
+
+def create_students_dict(*students):
+    return {s['name']: {'assignment': s.get('assignment', []),
+                        'test': s.get('test', []),
+                        'lab': s.get('lab', []),
+                        'final_grade': s.get('final_grade', 0)}
+            for s in students}
+
+students = create_students_dict(s1, s2)
+print(students)
+
